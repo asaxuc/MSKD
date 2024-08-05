@@ -547,17 +547,15 @@ class Step0():
                         # o_ml = (poh * (o1).softmax(dim=1)).mean(dim=1)               
                           
                     # l1 = torch.FloatTensor([0.]).to(self.device) #    # B T 20 768 B T 20 768  RI3S(sop, pot)  #
-                      
+                    l1 = RI3S(sop, pot) 
+                    loss += l1    
                     if rego is not None:   
                         [xo, _, _] = model_teacher.forward(regi, usew=args.udec)    
                         # for oos, regos in zip(oo[:-1], rego[:-1]):
                         #     l1 += nn.HuberLoss()(oos, regos.detach())
                         l2 = (10/(10+epoch))* DistillKL(4)(outputs, xo.detach(), w=targets )   
                         loss += l2 
-                        
-                        l1 =  RIS(outputs, o_all) # RI3S(sop, pot) 
-                        loss += l1    
-                     
+                         
                     l3 = (10/(10+epoch))* DistillKL(4)(outputs, o_all, w=targets) #  w=targets, ebs=ebs   
                     loss += l3   
                      
