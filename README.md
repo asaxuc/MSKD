@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">
-   Multi-Label Self-Knowledge Distillation 
+   Multi-label Self Knowledge Distillation 
   </h1> 
 </p>
 
