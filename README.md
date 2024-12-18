@@ -155,7 +155,7 @@ It is worth noting that you can set `teacher_pretrained = True` after you have a
 ## Citation
 please cite the following:
 
-``
+```
 @inproceedings{wang2025multi, 
   title={Multi-Label Self Knowledge Distillation}, 
   author={Wang, Xucong and Wang, Pengkun and Zhang, Shurui and Fang, Miao and Wang, Yang},  
@@ -165,7 +165,7 @@ please cite the following:
   pages={ }, 
   year={2025} 
 }
-``
+```
 
 ## Acknowledgement
 
