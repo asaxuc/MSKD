@@ -442,21 +442,7 @@ class MSKD():
                 loss.backward()
                 nn.utils.clip_grad_norm(backbone.parameters(), max_norm=10.0)
                 self.optimizer.step()
-                self.scheduler.step() 
-            elif method == "ud":
-                outputs, mid = backbone(inputs, method=method)
-                with torch.no_grad():
-                    ot, midt = model_teacher(inputs, method=method)
-                loss = self.criterion(outputs, tgt)
-                # loss = AsymmetricLossOptimized()(outputs, tgt)
-                loss += Distill_MBD(4)(F.sigmoid(outputs), F.sigmoid(ot), coe=True)
-                # loss += 0.1*DistillKL(4)(partial_softmax(outputs, targets), partial_softmax(ot,targets).detach())   
-                loss += nn.PairwiseDistance(2)(mid, midt).mean() 
-                self.optimizer.zero_grad()
-                loss.backward()
-                nn.utils.clip_grad_norm(backbone.parameters(), max_norm=10.0)
-                self.optimizer.step()
-                self.scheduler.step() 
+                self.scheduler.step()
                 
             elif method == "byot":
                 outputs, logits, features = backbone(inputs, method=method)
